@@ -1,9 +1,19 @@
-import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post, Query, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
 import { GetOrderQueryDto, PatchOrderBodyDto, PatchOrderParamDto, PostOrderDto } from './order.dto';
 import { OrderService } from './order.service';
 import { DistanceService } from './distance.service';
 import { v4 } from 'uuid';
+import { ErrorFilter } from '../error.filter';
+import { HttpExceptionFilter } from '../http-exception.filter';
+import { ValidationError } from 'class-validator';
 
+@UsePipes(new ValidationPipe({
+    transform: true,
+    exceptionFactory: (validationErrors: ValidationError[]) => {
+        return new HttpException(validationErrors.map(e => e.toString()).join(", "), HttpStatus.BAD_REQUEST);
+    }
+}))
+@UseFilters(ErrorFilter, HttpExceptionFilter)
 @Controller('/orders')
 export class OrderController {
     constructor(
@@ -49,8 +59,10 @@ export class OrderController {
     @Patch("/:id")
     @HttpCode(200)
     public async patchOrders(@Body() body: PatchOrderBodyDto, @Param() param: PatchOrderParamDto) {
+        console.log(body, param)
         const assigned = await this.orderService.takeOne(param.id);
         if (!assigned) {
+            console.log(3);
             throw new HttpException("Order id invalid / order taken", HttpStatus.BAD_REQUEST);
         }
 

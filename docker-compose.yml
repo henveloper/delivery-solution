@@ -14,21 +14,21 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - common-net
-  # api:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     ENV_NAME: prod
-  #   ports:
-  #     - 8080:8080
-  #   links:
-  #     - db
-  #   volumes:
-  #     - ./:/src
-  #   restart: always
-  #   networks:
-  #     - common-net
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ENV_NAME: prod
+    ports:
+      - 8080:8080
+    links:
+      - db
+    volumes:
+      - ./:/src
+    restart: always
+    networks:
+      - common-net
 networks:
   common-net: {}
 volumes:

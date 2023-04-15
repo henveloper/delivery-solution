@@ -18,5 +18,5 @@ ADD . /usr/src/app
 # TypeScript
 RUN npm run build
 # Start
-CMD [ "npm", "start:prod" ]
+CMD [ "npm", "run", "start:prod" ]
 EXPOSE 8080
