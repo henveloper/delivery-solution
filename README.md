@@ -18,7 +18,7 @@ Rename `./.sample.env` to `./.env`, put your gmap key in the form and run `./sta
 
 # Response to the API interfaces
 
-* POST coordinates is assumed to be in DD (decimal degrees) format eg "-80.5, 140.555"
+* POST coordinates is assumed to be in DD (decimal degrees) format eg `["-80.5", "140.555"]`
 
 * PATCH race condition handling is done by update where with returned row count as success indicator. `update where` is txn safe.
 
