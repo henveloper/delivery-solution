@@ -8,6 +8,8 @@ Rename `./.sample.env` to `./.env`, put your gmap key in the form and run `./sta
 
 2. Compose builds and runs the api, MySQL database is initialized by volume mounted sql commands in `./db/init.sql`.
 
+3. Time-wise, required half a minute for the MySQL instance to start accepting connection on local machine, api server retries in intervals of 10s.
+
 # Response to the requirements
 
 * http api is written in NodeJS (Typescript)
