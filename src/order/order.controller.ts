@@ -59,10 +59,8 @@ export class OrderController {
     @Patch("/:id")
     @HttpCode(200)
     public async patchOrders(@Body() body: PatchOrderBodyDto, @Param() param: PatchOrderParamDto) {
-        console.log(body, param)
         const assigned = await this.orderService.takeOne(param.id);
         if (!assigned) {
-            console.log(3);
             throw new HttpException("Order id invalid / order taken", HttpStatus.BAD_REQUEST);
         }
 
