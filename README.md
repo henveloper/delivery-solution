@@ -14,7 +14,7 @@ Rename `./.sample.env` to `./.env`, put your gmap key in the form and run `./sta
 
 * http api is written in NodeJS (Typescript)
 
-* unit tests for classes / api / integration are written
+* tests for classes / api / integration are written
 
 # Response to the API interfaces
 
