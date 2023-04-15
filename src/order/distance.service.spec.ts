@@ -3,7 +3,7 @@ import { DistanceService } from './distance.service';
 import { ConfigModule } from '@nestjs/config';
 
 // skipping this test due to cost concern
-describe.skip('DistanceService', () => {
+describe('DistanceService', () => {
   let service: DistanceService;
 
   beforeEach(async () => {
