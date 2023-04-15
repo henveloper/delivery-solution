@@ -15,9 +15,9 @@ export class PostOrderDto {
     @ArrayMaxSize(2)
     public destination: [lat: string, lon: string];
 
-    public isValueValid() {
-        return [this.origin[0], this.destination[0]].every(v => +v >= -90 && +v <= 90)
-            && [this.origin[1], this.destination[1]].every(v => +v >= -180 && +v <= 180);
+    static isValueValid(o: PostOrderDto) {
+        return [o.origin[0], o.destination[0]].every(v => +v >= -90 && +v <= 90)
+            && [o.origin[1], o.destination[1]].every(v => +v >= -180 && +v <= 180);
     }
 }
 
@@ -39,7 +39,7 @@ export class GetOrderQueryDto {
     @IsNumberString()
     public limit: string;
 
-    public isValueValid() {
-        return [this.page, this.limit].every(v => +v >= 1 && Math.floor(+v) === +v);
+    static isValueValid(o: GetOrderQueryDto) {
+        return [o.page, o.limit].every(v => +v >= 1 && Math.floor(+v) === +v);
     }
 }

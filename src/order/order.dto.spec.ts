@@ -9,7 +9,7 @@ describe('OrderDto', () => {
             o.origin = ["1", "1"];
             o.destination = ["1", "1"];
             expect(validateSync(o)).toHaveLength(0);
-            expect(o.isValueValid()).toEqual(true);
+            expect(PostOrderDto.isValueValid(o)).toEqual(true);
         });
 
         describe("class validation fails", () => {
@@ -51,14 +51,14 @@ describe('OrderDto', () => {
                 const o = new PostOrderDto();
                 o.origin = ["-90.5", "1"];
                 o.destination = ["1", "1"];
-                expect(o.isValueValid()).toEqual(false);
+                expect(PostOrderDto.isValueValid(o)).toEqual(false);
             })
 
             it("long", () => {
                 const o = new PostOrderDto();
                 o.origin = ["1", "1"];
                 o.destination = ["1", "180.5"];
-                expect(o.isValueValid()).toEqual(false);
+                expect(PostOrderDto.isValueValid(o)).toEqual(false);
             })
         });
     });

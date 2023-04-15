@@ -16,7 +16,7 @@ export class OrderController {
     @Post("/")
     @HttpCode(200)
     public async postOrders(@Body() body: PostOrderDto) {
-        if (!body.isValueValid()) {
+        if (!PostOrderDto.isValueValid(body)) {
             throw new HttpException("Invalid lat/lng values.", HttpStatus.BAD_REQUEST);
         }
 
@@ -62,7 +62,7 @@ export class OrderController {
     @Get("/")
     @HttpCode(200)
     public async getOrders(@Query() query: GetOrderQueryDto) {
-        if (!query.isValueValid()) {
+        if (!GetOrderQueryDto.isValueValid(query)) {
             throw new HttpException("Bad page/limit values.", HttpStatus.BAD_REQUEST);
         }
 

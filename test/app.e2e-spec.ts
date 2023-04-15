@@ -47,6 +47,7 @@ describe('AppController (e2e)', () => {
       .send({ origin: location[2], destination: location[0] });
 
     for (const response of [postResponse1, postResponse2, postResponse3, postResponse4, postResponse5]) {
+      console.log(JSON.stringify(response.body, null, 2));
       expect(isUUID(response.body.id)).toEqual(true);
       expect(isInt(response.body.distance)).toEqual(true);
       expect(response.body.status).toEqual("UNASSIGNED");
